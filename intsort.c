@@ -12,14 +12,14 @@ void print_arr (int *ar, int len) {
 
 /* sort function, very basic */
 int intsort(int *ar, int len) {
-    int i, temp, changes;
+    int i, changes;
     changes = 0;
     for (i = 0; i < len - 1; i++) {
         if (ar[i] > ar[i+1]) {
             changes++;
-            temp = ar[i];
-            ar[i] = ar[i+1];
-            ar[i+1] = temp;
+            ar[i] ^= ar[i+1];
+            ar[i+1] ^= ar[i];
+            ar[i] ^= ar[i+1];
         }
     }
     return changes;
