@@ -52,7 +52,7 @@ void fill_arr (int *ar, char *filename) {
 
 int main (int argc, char *argv[]) {
     long long int num_ints;
-    int iterations = 0;
+    long long int iterations = 0;
     num_ints = get_num_ints("./randnums.txt");
     printf("%lli ints in file, allocating memory ...", num_ints);
     int *arr_ptr = malloc(sizeof(int) * num_ints);
@@ -61,7 +61,7 @@ int main (int argc, char *argv[]) {
     while (intsort(arr_ptr, num_ints) != 0) {
         iterations++;
     }
-    printf("%i iterations made\n", iterations);
+    printf("%lli iterations made\n", iterations);
     
     return(EXIT_SUCCESS);
 }
