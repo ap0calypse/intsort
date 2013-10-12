@@ -11,7 +11,7 @@ void print_arr (int *ar, int len) {
 }
 
 /* sort function, very basic */
-int intsort(int *ar, int len) {
+long long int intsort(int *ar, int len) {
     int i, changes;
     changes = 0;
     for (i = 0; i < len - 1; i++) {
@@ -58,7 +58,9 @@ int main (int argc, char *argv[]) {
     int *arr_ptr = malloc(sizeof(int) * num_ints);
     printf(" DONE!\n");
     fill_arr(arr_ptr, "./randnums.txt");
-    while (intsort(arr_ptr, num_ints) != 0) {
+    long long int ret = 0;
+    while ((ret = intsort(arr_ptr, num_ints)) != 0) {
+        printf("%lli changes in run %lli\n", ret, iterations);
         iterations++;
     }
     printf("%lli iterations made\n", iterations);
