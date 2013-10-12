@@ -3,7 +3,7 @@
 #define _XOPEN_SOURCE
 
 /* print_arr function, returns all array elements and prints a newline at the end */
-void print_arr(int *ar, int len) {
+void print_arr (int *ar, int len) {
     for (int i = 0; i < len; i++) {
         printf("%i ", ar[i]);
     }
@@ -26,19 +26,43 @@ int intsort(int *ar, int len) {
 }
 
 
+long long int get_num_ints (char *filename) {
+    FILE *fd;
+    char number[50];
+    long long int num = 0;
+    if ((fd = fopen(filename, "r")) != NULL) {
+        while (fgets(number, 50, fd) != NULL) {
+            num++;
+        }
+        fclose(fd);
+    }
+    return num;
+}
+void fill_arr (int *ar, char *filename) {
+    FILE *fd;
+    long long int i = 0;
+    char number[50];
+    if ((fd = fopen(filename, "r")) != NULL) {
+        while (fgets(number, 50, fd) != NULL) {
+            ar[i++] = atoi(number);
+        }
+        fclose(fd);
+    }
+}
+
 int main (int argc, char *argv[]) {
-    // change this to other input source
-    int unsorted[] = { 99,98,77,6,55,44,33,22,11,6 };
-    int arlen = sizeof(unsorted) / sizeof(unsorted[0]);
-    printf("%i elements\n", arlen);
-    print_arr(unsorted, arlen);
+    long long int num_ints;
     int iterations = 0;
-    while (intsort(unsorted, arlen) != 0) {
+    num_ints = get_num_ints("./randnums.txt");
+    printf("%lli ints in file, allocating memory ...", num_ints);
+    int *arr_ptr = malloc(sizeof(int) * num_ints);
+    printf(" DONE!\n");
+    fill_arr(arr_ptr, "./randnums.txt");
+    while (intsort(arr_ptr, num_ints) != 0) {
         iterations++;
     }
-    printf("sorted array:\n");
-    print_arr(unsorted, arlen);
     printf("%i iterations made\n", iterations);
+    
     return(EXIT_SUCCESS);
 }
 
