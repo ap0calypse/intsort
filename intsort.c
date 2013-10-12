@@ -62,7 +62,7 @@ int main (int argc, char *argv[]) {
         iterations++;
     }
     printf("%lli iterations made\n", iterations);
-    
+    free(arr_ptr); 
     return(EXIT_SUCCESS);
 }
 
