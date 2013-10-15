@@ -1,0 +1,45 @@
+What is intsort?
+================
+
+First of all: intsort was planned as a fast integer sorting algorithm, but with only 
+little effort it could be ported to sort almost anything. This makes the name
+intsort obolete, but I'll stick with it unless I find a better name.
+
+It's not really good, but it's not very bad. Worst Case is O(n^2) which means, 
+that if the last element in the list is the lowest one, 
+we need n times n comparison operations. 
+
+In the very special case, that the list is sorted or nearly sorted, the algorithm 
+works pretty well. :P ....
+
+How does it work?
+=================
+
+Let's assume you have the following unsorted array:
+
+10,43,22,65,24,1,5
+
+Intsort walks through the array and compares pair-wise:
+10, 43
+
+10 is lower than 43, next comparison:
+43, 22
+
+43 is bigger than 22, they swap places. Next pair:
+43, 65
+
+everything ok, next:
+65, 24
+
+they swap places again. Next step:
+65, 1
+
+1 is smaller, they swap, next:
+65,5
+
+they swap again. one loop complete. The array now looks like this:
+
+10,22,43,24,1,5,65
+
+This is not finished, so we run the loop again until there are no swaps anymore, which 
+then means the array is sorted :)
