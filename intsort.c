@@ -11,8 +11,8 @@ void print_arr (int *ar, int len) {
 }
 
 /* sort function, very basic */
-long long int intsort(int *ar, int len) {
-    int i, changes;
+long long int intsort(int *ar, long long int len) {
+    long long int i, changes;
     changes = 0;
     for (i = 0; i < len - 1; i++) {
         if (ar[i] > ar[i+1]) {
